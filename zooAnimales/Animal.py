@@ -1,27 +1,66 @@
-class Animal:
-    _totalAnimales = 0
-    _listado = []
+import zooAnimales
 
-    def _init_(self, nombre, edad, habitat, genero):
+class Animal():
+    _totalAnimales = 0
+    _zona = ""
+
+    def __init__(self, nombre, edad, habitat, genero):
         self._nombre = nombre
         self._edad = edad
         self._habitat = habitat
         self._genero = genero
         Animal._totalAnimales += 1
-        Animal._listado.append(self)
+    
+    def movimiento():
+        return "desplazarse"
 
-    @classmethod
-    def totalPorTipo(cls):
-        return (f"Mamiferos : {Mamifero.cantidadMamiferos()}\n"
-                f"Aves : {Ave.cantidadAves()}\n"
-                f"Reptiles : {Reptil.cantidadReptiles()}\n"
-                f"Peces : {Pez.cantidadPeces()}\n"
-                f"Anfibios : {Anfibio.cantidadAnfibios()}")
-
+    @staticmethod
+    def totalPorTipo():
+        return "Mamiferos : " + str(zooAnimales.mamifero.Mamifero.cantidadMamiferos()) + "\nAves : " + str(zooAnimales.ave.Ave.cantidadAves()) + "\nReptiles : " + str(zooAnimales.reptil.Reptil.cantidadReptiles()) + "\nPeces : " + str(zooAnimales.pez.Pez.cantidadPeces()) + "\nAnfibios : " + str(zooAnimales.anfibio.Anfibio.cantidadAnfibios())
+    
     def toString(self):
-        return (f"Mi nombre es {self._nombre}, tengo una edad de {self._edad}, "
-                f"habito en {self._habitat} y mi genero es {self._genero}")
+        if self._zona != "":
+            return "Mi nombre es " + self._nombre + ", tengo una edad de " + str(self._edad) + ", habito en " + self._habitat + " y mi genero es " + self._genero + ", la zona en la que me ubico es " + self._zona.getNombre() + ", en el zoo " + self._zona.getZoo().getNombre()
+        else:
+            return "Mi nombre es " + self._nombre + ", tengo una edad de " + str(self._edad) + ", habito en " + self._habitat + " y mi genero es " + self._genero
+    
+    @classmethod
+    def getTotalAnimales(cls):
+        return cls._totalAnimales
 
     @classmethod
-    def getListado(cls):
-        return cls._listado
+    def setTotalAnimales(cls, totalAnimales):
+        cls._totalAnimales = totalAnimales
+
+    @classmethod
+    def getZona(cls):
+        return cls._zona
+    
+    @classmethod
+    def setZona(cls, zona):
+        cls._zona = zona
+
+    def getNombre(self):
+        return self._nombre
+    
+    def setNombre(self, nombre):
+        self._nombre = nombre
+
+    def getEdad(self):
+        return self._edad
+    
+    def setEdad(self, edad):
+        self._edad = edad
+    
+    def getHabitat(self):
+        return self._habitat
+    
+    def setEdad(self, habitat):
+        self._habitat = habitat
+    
+    def getGenero(self):
+        return self._genero
+    
+    def setGenero(self, genero):
+        self._genero = genero
+    
